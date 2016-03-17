@@ -22,28 +22,8 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public String selectById(String id) {
-		MemberBean temp = new MemberBean();
-		
-		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT password FROM Member WHERE id ='" + id +"'");
-
-			while (rs.next()) {
-				temp.setId(rs.getString("id"));
-				temp.setName(rs.getString("name"));
-				temp.setPassword(rs.getString("password"));
-				temp.setAddr(rs.getString("addr"));
-				temp.setBirth(rs.getInt("birth"));
-			}
-		} catch (Exception e) {
-			System.out.println("selectMember() 에러 발생!!");
-			e.printStackTrace();
-		}
-		
-		return null;
+	public void selectById(String id) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
