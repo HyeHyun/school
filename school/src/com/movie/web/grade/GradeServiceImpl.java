@@ -41,12 +41,12 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public ArrayList<GradeBean> getGradesByName(String name) {
+	public ArrayList<GradeBean> getGradesByName(String id) {
 		// 성적표 조회(이름)
 		ArrayList<GradeBean> tempList = new ArrayList<GradeBean>();
 		
 		for (int i = 0; i < gradeList.size(); i++) {
-			if (gradeList.get(i).getName().equals(name)) {
+			if (gradeList.get(i).getId().equals(id)) {
 				tempList.add(gradeList.get(i));
 			}
 		}
@@ -58,7 +58,7 @@ public class GradeServiceImpl implements GradeService {
 	public String getNameByHak(int hak) {
 		// 이름 조회(학번)
 		GradeBean grade = getGradeByHak(hak);
-		return (grade == null ? null : grade.getName());
+		return (grade == null ? null : grade.getId());
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class GradeServiceImpl implements GradeService {
 		// 성적표 수정
 		String temp = "";
 		
-		if (grade.getName() == null) {
+		if (grade.getId() == null) {
 			temp = "존재하지 않는 학번입니다.";
 		} else {
 			GradeBean searchedGrade = getGradeByHak(grade.getHak());

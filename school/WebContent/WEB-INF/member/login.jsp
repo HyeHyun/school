@@ -3,9 +3,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>메인화면</title>
+	<title>로그인 폼</title>
 </head>
 <body>
-	<a href="login.jsp"> 로그인 화면 이동 </a>
+	
 </body>
 </html>
