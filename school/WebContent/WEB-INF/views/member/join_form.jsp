@@ -39,6 +39,9 @@
 			</table>
 			<div><input type="submit" value="회원가입" /><input type="reset" value="취소" /></div>
 		</form>
+		<form action="${context}/global/main.do">
+			<input type="submit" value="홈" />
+		</form>
 	</div>
 </body>
 </html>

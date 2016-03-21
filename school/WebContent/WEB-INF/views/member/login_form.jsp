@@ -21,7 +21,7 @@
 					<td><input type="password" name="password" required="required" /></td>
 				</tr>
 			</table>
-			<div><input type="submit" value="로그인"/><input type="reset" value="취소"/></div>
+			<div><input type="submit" value="로그인"/></div>
 		</form>
 	</div>
 	<div>

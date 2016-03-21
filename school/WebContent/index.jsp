@@ -8,6 +8,8 @@
 	<title>메인화면</title>
 </head>
 <body>
-	<a href="${context}/member/login_form.do"> 로그인 화면 이동 </a>
+	<form action="${context}/global/main.do">
+		<input type="submit" value="홈"/>
+	</form>
 </body>
 </html>
