@@ -8,6 +8,9 @@
 	<title></title>
 </head>
 <body>
+	<form action="${context}/global/main.do">
+		<input type="submit" value="로그아웃"/>
+	</form>
 	<table>
 		<tr>
 			<td rowspan="4"></td>
@@ -24,7 +27,7 @@
 		</tr>
 		<tr>
 			<td><h3>주소</h3></td>
-			<td><input type="text" /></td>
+			<td><input type="text"  /></td>
 		</tr>
 		<tr>
 			<td><input type="file" /></td>
