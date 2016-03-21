@@ -9,8 +9,8 @@
 </head>
 <body>
 	<div>
-		<h2> 로그인 화면에 들어옴 </h2>
-		<form action="${context}/member/login.do" name="frm" method="get">
+		<h2> 회원가입 </h2>
+		<form action="${context}/member/join.do">
 			<table>
 				<tr>
 					<td><h3>아이디</h3></td>
@@ -20,13 +20,25 @@
 					<td><h3>비밀번호</h3></td>
 					<td><input type="password" name="password" required="required" /></td>
 				</tr>
+				<tr>
+					<td><h3>비밀번호 확인</h3></td>
+					<td><input type="password" required="required" /></td>
+				</tr>
+				<tr>
+					<td><h3>이름</h3></td>
+					<td><input type="text" name="name" required="required" /></td>
+				</tr>
+				<tr>
+					<td><h3>주소</h3></td>
+					<td><input type="text" name="addr" /></td>
+				</tr>
+				<tr>
+					<td><h3>생년월일</h3></td>
+					<td><input type="date" name="birth" /></td>
+				</tr>
 			</table>
-			<div><input type="submit" value="로그인"/><input type="reset" value="취소"/></div>
+			<div><input type="submit" value="회원가입" /><input type="reset" value="취소" /></div>
 		</form>
-	</div>
-	<div>
-		<h4>아이디가 없으면, 계정을 생성하세요</h4>
-		<a href="${context}/member/join_form.do">회원가입</a>
 	</div>
 </body>
 </html>

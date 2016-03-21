@@ -3,6 +3,8 @@ package com.movie.web.global;
 public class Command {
 	private String directory, action, view;
 
+	public Command() {}
+	
 	public Command(String directory, String action) {
 		this.directory = directory;
 		this.action = action;
