@@ -1,49 +1,49 @@
 package com.movie.web.grade;
 
-import java.util.*;
+import java.io.IOException;
 
-public class GradeController {
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.movie.web.global.Command;
+import com.movie.web.global.CommandFactory;
+import com.movie.web.member.MemberService;
+import com.movie.web.member.MemberServiceImpl;
+
+@WebServlet({"/grade/my_grade.do"})
+public class GradeController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	// 페이지 이동시에는 doGet
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		System.out.println("인덱스에서 들어옴");
+		Command command = new Command();
 		GradeService service = new GradeServiceImpl();
+		String path = request.getServletPath();
+		String temp = path.split("/")[2];
 		
-		while (true) {
-			System.out.print("[메뉴] 1.등록 2.수정 3.삭제 4.조회(전체) 5.조회(이름) 6.조회(학번) 7.회원수 0.종료 ");
-			
-			switch (scanner.nextInt()) {
-			case 1:
-				System.out.print("학번, 이름, 자바, SQL, JSP, 스프링 점수를 입력하세요 ");	
-				System.out.println(service.input(new GradeBean(scanner.nextInt(), scanner.next(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt())));
-				break;
-			case 2:
-				System.out.print("수정하려는 성적표의 학번, 자바, SQL, JSP, 스프링 점수를 입력하세요 ");
-				break;
-			case 3:
-				System.out.print("학번을 입력하세요 ");
-				System.out.println(service.delete(scanner.nextInt()));
-				break;
-			case 4:
-				System.out.println(service.getList());
-				break;
-			case 5:
-				System.out.print("이름을 입력하세요 ");
-				System.out.println(service.getGradesByName(scanner.next()));
-				break;
-			case 6:
-				System.out.print("학번을 입력하세요 ");
-				System.out.println(service.getGradeByHak(scanner.nextInt()));
-				break;
-			case 7:
-				System.out.println(service.getCount());
-				break;
-			case 0:
-				System.out.println("프로그램 종료");
-				return;
-
-			default:
-				System.out.println("잘못 입력하셨습니다.");
-				return;
-			}
+		String directory = path.split("/")[1];
+		String action = temp.substring(0, temp.indexOf("."));
+		
+		switch (action) {
+		case "my_grade":
+			command = CommandFactory.createCommand(directory, "my_grade");
+			request.setAttribute("score", service.getGradeById(request.getParameter("id")));
+			break;
+		
+		default:
+			command = CommandFactory.createCommand(directory, action);
+			break;
 		}
+		
+		RequestDispatcher dis = request.getRequestDispatcher(command.getView());
+		dis.forward(request, response);	
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 }

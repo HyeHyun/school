@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.movie.web.global.Constants;
+import com.movie.web.global.DatabaseFactory;
+import com.movie.web.global.Vendor;
 
 public class MemberDAOImpl implements MemberDAO {
 
@@ -14,6 +17,10 @@ public class MemberDAOImpl implements MemberDAO {
 	private Statement stmt; // 쿼리 전송 객체
 	private PreparedStatement pstmt; // 쿼리 전송 객체2
 	private ResultSet rs; // 리턴값 회수 객체
+	
+	public MemberDAOImpl() {
+		conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection();
+	}
 	
 	@Override
 	public void insert(MemberBean member) {
@@ -31,8 +38,6 @@ public class MemberDAOImpl implements MemberDAO {
 		MemberBean temp = new MemberBean();
 		
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM Member WHERE id ='" + id +"'");
 
@@ -61,4 +66,22 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public boolean isMember(String id, String password) {
+		boolean result = false;
+
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT id, password FROM GradeMember WHERE id ='" + id +"' and password = '" + password + "'");
+
+			while (rs.next()) {
+				result = true;
+			}
+		} catch (Exception e) {
+			System.out.println("isMember() 에러 발생!!");
+			e.printStackTrace();
+		}
+
+		return result;
+	}	
 }

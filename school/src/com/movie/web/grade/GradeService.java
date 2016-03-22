@@ -19,6 +19,8 @@ public interface GradeService {
 	public GradeMemberBean getGradeByHak(int hak);
 	// R 성적표 조회(이름)
 	public List<GradeMemberBean> getGradesByName(String name);
+	// R 성적표 조회(아이디)
+	public GradeMemberBean getGradeById(String id);
 	// R 카운트 조회
 	public int getCount();
 	// U 성적표 수정

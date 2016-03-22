@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="context" value="<%=request.getContextPath() %>"></c:set>
-<!doctype html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-</head>
-<body>
-	<h2>메인화면</h2>
-	
-	<a href="${context}/member/login_form.do"> 로그인 화면 이동 </a>
-</body>
-</html>
+<jsp:include page="header.jsp" />
+<img src="${context}/img/main/main.jpeg" alt="" width="100%" height="600px"/>
+<br/>
+<div style="margin-left: 43.5%">
+<div>
+	<h4>
+		<a href="${context}/member/login_form.do">로그인 이동</a>
+	</h4>
+	<h4>
+		<a href="${context}/member/join.do">회원가입 이동</a>
+	</h4>
+</div>
+</div>
+<jsp:include page="footer.jsp" />

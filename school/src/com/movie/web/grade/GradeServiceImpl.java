@@ -35,6 +35,12 @@ public class GradeServiceImpl implements GradeService {
 		// 성적표 조회(이름)
 		return dao.selectGradesByName(name);
 	}
+	
+	@Override
+	public GradeMemberBean getGradeById(String id) {
+		// 성적표 조회(학번)		
+		return dao.selectGradeById(id);
+	}
 
 	@Override
 	public int getCount() {

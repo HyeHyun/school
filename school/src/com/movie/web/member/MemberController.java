@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
 
-@WebServlet({"/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do"})
+@WebServlet({"/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do", "/member/update_form.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,6 +20,7 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		System.out.println("인덱스에서 들어옴");
 		Command command = new Command();
+		MemberService service = new MemberServiceImpl();
 		String path = request.getServletPath();
 		String temp = path.split("/")[2];
 		
@@ -28,12 +29,20 @@ public class MemberController extends HttpServlet {
 		
 		switch (action) {
 		case "join":
-			System.out.println("join");
-			System.out.println("id : " + request.getParameter("id"));
 			break;
 		
 		case "login":
-			command = CommandFactory.createCommand(directory, "detail");
+			if (service.login(request.getParameter("id"), request.getParameter("password"))) {
+				request.setAttribute("member", service.detail(request.getParameter("id")));
+				command = CommandFactory.createCommand(directory, "detail");
+			} else {
+				command = CommandFactory.createCommand(directory, "login_form");
+			}
+			break;
+			
+		case "update_form":
+			request.setAttribute("member", service.detail(request.getParameter("id")));
+			command = CommandFactory.createCommand(directory, action);
 			break;
 		
 		default:
