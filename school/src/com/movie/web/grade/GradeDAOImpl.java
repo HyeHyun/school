@@ -1,7 +1,6 @@
 package com.movie.web.grade;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -10,6 +9,9 @@ import java.util.*;
 import com.movie.web.global.Constants;
 import com.movie.web.global.DatabaseFactory;
 import com.movie.web.global.Vendor;
+import com.movie.web.member.MemberDAO;
+import com.movie.web.member.MemberService;
+import com.movie.web.member.MemberServiceImpl;
 
 public class GradeDAOImpl implements GradeDAO {
 	
@@ -17,9 +19,14 @@ public class GradeDAOImpl implements GradeDAO {
 	private Statement stmt; // 쿼리 전송 객체
 	private PreparedStatement pstmt; // 쿼리 전송 객체2
 	private ResultSet rs; // 리턴값 회수 객체
+	private static GradeDAO instance = new GradeDAOImpl();
 	
 	public GradeDAOImpl() {
 		conn = DatabaseFactory.getDatabase(Vendor.ORACLE, Constants.ID, Constants.PASSWORD).getConnection();
+	}
+	
+	public static GradeDAO getInstance() {
+		return instance;
 	}
 	
 	@Override
@@ -56,11 +63,11 @@ public class GradeDAOImpl implements GradeDAO {
 				GradeMemberBean bean = new GradeMemberBean();
 				
 				bean.setId(rs.getString("id"));
+				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSql(rs.getInt("sql"));
@@ -86,11 +93,11 @@ public class GradeDAOImpl implements GradeDAO {
 			
 			while (rs.next()) {
 				bean.setId(rs.getString("id"));
+				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSql(rs.getInt("sql"));
@@ -116,11 +123,11 @@ public class GradeDAOImpl implements GradeDAO {
 				GradeMemberBean bean = new GradeMemberBean();
 				
 				bean.setId(rs.getString("id"));
+				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSql(rs.getInt("sql"));
@@ -146,11 +153,11 @@ public class GradeDAOImpl implements GradeDAO {
 			
 			while (rs.next()) {
 				bean.setId(rs.getString("id"));
+				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
 				bean.setAddr(rs.getString("addr"));
 				bean.setBirth(rs.getInt("birth"));
-				bean.setHak(rs.getInt("hak"));
 				bean.setJava(rs.getInt("java"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSql(rs.getInt("sql"));

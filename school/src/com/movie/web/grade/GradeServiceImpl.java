@@ -5,12 +5,17 @@ import java.util.*;
 public class GradeServiceImpl implements GradeService {
 	// 멤버 필드
 	ArrayList<GradeBean> gradeList;
-	GradeDAO dao = new GradeDAOImpl();
+	GradeDAO dao = GradeDAOImpl.getInstance();
+	private static GradeService instance = new GradeServiceImpl();
 	
 	public GradeServiceImpl() {
 		gradeList = new ArrayList<GradeBean>(); // 초기화
 	}
 	
+	public static GradeService getInstance() {
+		return instance;
+	}
+
 	// 멤버 메소드 에어리어
 	@Override
 	public String input(GradeBean grade) {

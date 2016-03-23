@@ -17,12 +17,12 @@ import com.movie.web.member.MemberServiceImpl;
 @WebServlet({"/grade/my_grade.do"})
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	GradeService service = GradeServiceImpl.getInstance();
+	
 	// 페이지 이동시에는 doGet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		System.out.println("인덱스에서 들어옴");
 		Command command = new Command();
-		GradeService service = new GradeServiceImpl();
 		String path = request.getServletPath();
 		String temp = path.split("/")[2];
 		
