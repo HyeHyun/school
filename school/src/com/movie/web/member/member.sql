@@ -28,6 +28,9 @@ VALUES ('song', '송중기', '1', '대전', 041001);
 INSERT INTO Member
 VALUES ('yoon', '윤하나', '1', '인천', 060505);
 
+INSERT INTO Member
+VALUES ('you', '유아인', '1', '강남', 860505);
+
 SELECT * FROM Member;
 
 SELECT * FROM Member

@@ -12,7 +12,7 @@ public class MemberMain {
 			switch (scanner.nextInt()) {
 			case 1:
 				System.out.print("아이디, 비밀번호, 이름, 주소, 생년월일을 입력하세요 ");
-				service.join(new MemberBean(scanner.next(), scanner.next(), scanner.next(), scanner.next(), scanner.nextInt()));
+				System.out.println("회원가입 결과 : " + service.join(new MemberBean(scanner.next(), scanner.next(), scanner.next(), scanner.next(), scanner.nextInt())));
 				break;
 			case 2:
 				System.out.print("아이디와 비밀번호를 입력하세요 ");
@@ -31,7 +31,7 @@ public class MemberMain {
 				break;
 			case 5:
 				System.out.print("삭제하려는 회원의 아이디를 입력하세요 ");
-				System.out.println(service.remove(scanner.next()));
+				System.out.println("회원 삭제 결과 : " + service.remove(scanner.next()));
 				break;
 			case 0:
 				System.out.println("프로그램 종료");

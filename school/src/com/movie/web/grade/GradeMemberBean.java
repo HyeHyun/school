@@ -2,12 +2,13 @@ package com.movie.web.grade;
 
 public class GradeMemberBean {
 	private String id, password, name, addr;
-	private int hak, java, sql, jsp, spring, birth;
+	private int scoreSeq, java, sql, jsp, spring, birth;
 	
 	public GradeMemberBean() {}
 	
-	public GradeMemberBean(String id, int java, int sql, int jsp, int spring, String name, String password, String addr, int birth) {
+	public GradeMemberBean(String id, int scoreSeq, int java, int sql, int jsp, int spring, String name, String password, String addr, int birth) {
 		this.id = id;
+		this.scoreSeq = scoreSeq;
 		this.java = java;
 		this.sql = sql;
 		this.jsp = jsp;
@@ -24,6 +25,14 @@ public class GradeMemberBean {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public int getScoreSeq() {
+		return scoreSeq;
+	}
+
+	public void setScoreSeq(int scoreSeq) {
+		this.scoreSeq = scoreSeq;
 	}
 
 	public String getPassword() {
@@ -48,14 +57,6 @@ public class GradeMemberBean {
 
 	public void setAddr(String addr) {
 		this.addr = addr;
-	}
-
-	public int getHak() {
-		return hak;
-	}
-
-	public void setHak(int hak) {
-		this.hak = hak;
 	}
 
 	public int getJava() {
@@ -100,7 +101,7 @@ public class GradeMemberBean {
 
 	@Override
 	public String toString() {
-		return "성적표 [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 학번=" + hak + ", 자바="
+		return "성적표 [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 자바="
 				+ java + ", SQL=" + sql + ", JSP=" + jsp + ", 스프링=" + spring + ", 생년월일=" + birth + "]\n";
 	}
 }

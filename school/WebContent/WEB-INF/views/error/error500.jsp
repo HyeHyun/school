@@ -24,7 +24,7 @@
 	 -->
 	
 	<div>
-		<img src="${context}/img/error/error500.jpg" alt="500에러 발생" />
+		<img src="${context}/resources/img/error/error500.jpg" alt="500에러 발생" />
 	</div>
 </body>
 </html>

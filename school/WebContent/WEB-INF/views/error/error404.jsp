@@ -24,7 +24,7 @@
 	 -->
 	
 	<div>
-		<img src="${context}/img/error/error404.jpg" alt="404에러 발생" />
+		<img src="${context}/resources/img/error/error404.jpg" alt="404에러 발생" />
 	</div>
 </body>
 </html>

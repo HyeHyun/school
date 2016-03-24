@@ -3,8 +3,7 @@ package com.movie.web.global;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CommandFactory {
-
+public class CommandFactory { // 생성자를 통해 객체를 만드는 공장
 	public static Command getCommand(HttpServletRequest request, HttpServletResponse response) {
 		String[] arr = new String[2];
 		String path = request.getServletPath();

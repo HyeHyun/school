@@ -5,43 +5,34 @@ import java.util.HashMap;
 public class MemberServiceImpl implements MemberService {
 
 	HashMap<String, MemberBean> map;
-	MemberDAO dao = new MemberDAOImpl();
-	
-	public MemberServiceImpl() {
-		map = new HashMap<String, MemberBean>();
+	MemberDAO dao = MemberDAOImpl.getInstance();
+	private static MemberService instance = new MemberServiceImpl();
+
+	public static MemberService getInstance() {
+		return instance;
 	}
 	
 	@Override
-	public void join(MemberBean member) {
+	public int join(MemberBean member) {
 		// 회원가입
-		map.put(member.getId(), member);
+		return dao.insert(member);
 	}
 
 	@Override
 	public MemberBean detail(String id) {
-		return dao.selectMember(id);
+		return dao.selectById(id);
 	}
 	
 	@Override
-	public String update(MemberBean member) {
+	public int update(MemberBean member) {
 		// 수정
-		String result = "";
-		if (member.getId().equals(null)) {
-			result = "수정 실패";
-		} else {
-			map.replace(member.getId(), member);
-			result = "수정 성공";
-		}
-		
-		return result;
+		return dao.update(member);
 	}
 
 	@Override
-	public String remove(String id) {
+	public int remove(String id) {
 		// 삭제
-		map.remove(id);
-		
-		return "삭제 성공";
+		return dao.delete(id);
 	}
 
 	@Override
