@@ -24,8 +24,9 @@ public class MemberController extends HttpServlet {
 		Command command = new Command();
 		String[] str = Seperator.seperator(request);
 		MemberBean member = new MemberBean();
-		
+		System.out.println("서비스 확인");
 		switch (str[1]) {
+		
 		case "login":
 			if (service.login(request.getParameter("id"), request.getParameter("password"))) {
 				request.setAttribute("member", service.detail(request.getParameter("id")));
@@ -42,7 +43,7 @@ public class MemberController extends HttpServlet {
 			
 		case "update_form":
 			request.setAttribute("member", service.detail(request.getParameter("id")));
-			command = CommandFactory.createCommand(str[0], str[1]);
+			command = CommandFactory.createCommand(str[0], "update_form");
 			break;
 			
 		case "delete":

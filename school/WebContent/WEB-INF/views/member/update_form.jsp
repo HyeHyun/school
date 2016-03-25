@@ -5,7 +5,7 @@
 		<h2 class="text-center">회원수정정보</h2>
 	</div>
 	<div class="joinCenter row">
-		<form action="${context}/member/update.do" method="post" name="updateForm" class="form-horizontal">
+		<form class="form-horizontal">
 			<fieldset class="joinField">
 				<div class="form-group">
 				 	<label for="input_id" class="col-sm-4 control-label">아이디</label>
@@ -38,9 +38,16 @@
 					</div>
 				</div>
 				<div class="input_button text-center">
-					<input type="submit" id="updateButton" class="btn btn-primary" value ="수정"/>
+					<button id="updateButton" class="btn btn-primary">수정</button>
 				</div>
 			</fieldset>
 		</form>
 	</div>
 </div>
+<script>
+	$(function() {
+		$('#updateButton').click(function() {
+			$('form').attr('action', '${context}/member/update.do').attr('method', 'post').submit();
+		});
+	});
+</script>

@@ -12,6 +12,7 @@ import com.movie.web.global.DatabaseFactory;
 import com.movie.web.global.Vendor;
 import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
+import com.movie.web.member.MemberBean;
 
 public class AdminDAOImpl implements AdminDAO {
 	private Connection conn; // 오라클 연결 객체
@@ -29,7 +30,34 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<GradeMemberBean> select() {
+	public List<MemberBean> selectMember() {
+		List<MemberBean> list = new Vector<MemberBean>();
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Member");
+
+			while (rs.next()) {
+				MemberBean member = new MemberBean();
+				
+				member.setId(rs.getString("id"));
+				member.setPassword(rs.getString("password"));
+				member.setName(rs.getString("name"));
+				member.setAddr(rs.getString("addr"));
+				member.setBirth(rs.getInt("birth"));
+				
+				list.add(member);
+			}
+		} catch (Exception e) {
+			System.out.println("selectMember() 에러 발생!!");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	@Override
+	public List<GradeMemberBean> selectGrade() {
 		List<GradeMemberBean> list = new Vector<GradeMemberBean>();
 		
 		try {
@@ -40,11 +68,7 @@ public class AdminDAOImpl implements AdminDAO {
 				GradeMemberBean bean = new GradeMemberBean();
 				
 				bean.setId(rs.getString("id"));
-				bean.setScoreSeq(rs.getInt("score_seq"));
 				bean.setName(rs.getString("name"));
-				bean.setPassword(rs.getString("password"));
-				bean.setAddr(rs.getString("addr"));
-				bean.setBirth(rs.getInt("birth"));
 				bean.setJava(rs.getInt("java"));
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSql(rs.getInt("sql"));
@@ -53,7 +77,7 @@ public class AdminDAOImpl implements AdminDAO {
 				list.add(bean);
 			}
 		} catch (Exception e) {
-			System.out.println("select() 에러 발생!!");
+			System.out.println("selectGrade() 에러 발생!!");
 			e.printStackTrace();
 		}
 

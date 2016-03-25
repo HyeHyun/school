@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.movie.web.grade.GradeBean;
 import com.movie.web.grade.GradeMemberBean;
+import com.movie.web.member.MemberBean;
 
 public interface AdminDAO {
-	public List<GradeMemberBean>select();
+	public List<MemberBean>selectMember();
+	public List<GradeMemberBean>selectGrade();
 	public int insert(GradeBean grade);
 }

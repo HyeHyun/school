@@ -5,11 +5,15 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8" />
-	<title>메인화면</title>
+	<title>인덱스화면</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
-	<form action="${context}/global/main.do">
-		<input type="submit" value="홈"/>
-	</form>
+	<img src="${context}/resources/img/main/index.gif" id="image" alt="" style="width: 20%; height: 20%; margin-left: 40%"/>
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		location.href = '${context}/global/main.do';
+	});
+</script>
 </html>

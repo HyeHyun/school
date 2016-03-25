@@ -28,12 +28,7 @@ public class AdminController extends HttpServlet {
 			request.setAttribute("list", service.getMemberList());
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
-			
-/*		case "member_list" :
-			
-			command = CommandFactory.createCommand(str[0], str[1]);
-			break;*/
-			
+
 		default:
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;

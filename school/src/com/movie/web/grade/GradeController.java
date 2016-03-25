@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
+import com.movie.web.global.DispatcherServlet;
+import com.movie.web.global.Seperator;
 import com.movie.web.member.MemberService;
 import com.movie.web.member.MemberServiceImpl;
 
@@ -19,31 +21,22 @@ public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GradeService service = GradeServiceImpl.getInstance();
 	
-	// 페이지 이동시에는 doGet
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		System.out.println("인덱스에서 들어옴");
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Command command = new Command();
-		String path = request.getServletPath();
-		String temp = path.split("/")[2];
+		String[] str = Seperator.seperator(request);
 		
-		String directory = path.split("/")[1];
-		String action = temp.substring(0, temp.indexOf("."));
-		
-		switch (action) {
+		switch (str[1]) {
 		case "my_grade":
-			command = CommandFactory.createCommand(directory, "my_grade");
+			command = CommandFactory.createCommand(str[0], "my_grade");
 			request.setAttribute("score", service.getGradeById(request.getParameter("id")));
 			break;
 		
 		default:
-			command = CommandFactory.createCommand(directory, action);
+			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 		}
 		
-		RequestDispatcher dis = request.getRequestDispatcher(command.getView());
-		dis.forward(request, response);	
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DispatcherServlet.dispatcher(request, response, command);
 	}
 }

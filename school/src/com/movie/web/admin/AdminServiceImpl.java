@@ -3,6 +3,7 @@ package com.movie.web.admin;
 import java.util.List;
 
 import com.movie.web.grade.GradeMemberBean;
+import com.movie.web.member.MemberBean;
 
 public class AdminServiceImpl implements AdminService {
 	AdminDAO dao = AdminDAOImpl.getInstance();
@@ -13,8 +14,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<GradeMemberBean> getMemberList() {
-		return dao.select();
+	public List<MemberBean> getMemberList() {
+		return dao.selectMember();
+	}
+	
+	@Override
+	public List<GradeMemberBean> getGradeList() {
+		return dao.selectGrade();
 	}
 
 	@Override
