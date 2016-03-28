@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <div id="detail">
 	<div class="joinTop">
-		<h2 class="text-center">회원리스트</h2>
+		<h2 class="text-center">성적 목록</h2>
 	</div> 
 	<center>
 		<table border="1" style="width: 90%; text-align: center">

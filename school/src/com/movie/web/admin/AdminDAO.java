@@ -10,4 +10,5 @@ public interface AdminDAO {
 	public List<MemberBean>selectMember();
 	public List<GradeMemberBean>selectGrade();
 	public int insert(GradeBean grade);
+	public AdminBean selectAdmin(AdminBean admin);
 }

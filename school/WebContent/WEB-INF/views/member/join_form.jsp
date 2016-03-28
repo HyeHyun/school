@@ -43,6 +43,26 @@
 						<input type="text" class="form-control" id="birth" name="birth" placeholder="생년월일을 입력하세요"/>
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="input_name" class="col-sm-4 control-label">수강과목</label>
+				 	<div class="col-sm-4">
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>Java
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>JSP
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>SQL
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>Spring
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>파이썬
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>노드JS
+						<input type="checkbox" class="form-control" id="subject" name="subject"/>안드로이드
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="input_name" class="col-sm-4 control-label">전공</label>
+					<select name="major" id="major">
+						<option value="computer">컴퓨터공학</option>
+						<option value="info">정보통신</option>
+						<option value="security">정보보안</option>
+					</select>
+				</div>
 				<div class="input_button text-center">
 					<img src="${context}/resources/img/member/join.jpg" id="joinButton" />
 					<button id="cancleButton" class="btn btn-primary">취소</button>
