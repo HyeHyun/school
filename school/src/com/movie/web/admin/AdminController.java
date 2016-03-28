@@ -14,7 +14,7 @@ import com.movie.web.global.CommandFactory;
 import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Seperator;
 
-@WebServlet({"/admin/admin_login_form.do", "/admin/admin_login.do", "/admin/admin_form.do", "/member/member_list.do", "/admin/grade_list.do"})
+@WebServlet({"/admin/login_form.do", "/admin/login.do", "/admin/admin_form.do"})
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -27,31 +27,21 @@ public class AdminController extends HttpServlet {
 		String[] str = Seperator.seperator(request);
 		
 		switch (str[1]) {
-		case "admin_login" :
+		case "login" :
 			admin.setId(request.getParameter("id"));
 			admin.setPassword(request.getParameter("password"));
-			admin = service.getAdmin(admin);
+			AdminBean temp = service.getAdmin(admin);
 
-			if (admin.getId() != null) {
+			if (temp.getId() != null) {
 				command = CommandFactory.createCommand(str[0], "admin_form");
-				session.setAttribute("admin", admin); // session 영역 (BOM)
+				session.setAttribute("admin", temp); // session 영역 (BOM)
 			} else {
-				command = CommandFactory.createCommand(str[0], "admin_login_form");
+				command = CommandFactory.createCommand(str[0], "login_form");
 			}			
 			break;
 			
 		case "admin_form" : 
-			request.setAttribute("list", service.getMemberList());
-			command = CommandFactory.createCommand(str[0], str[1]);
-			break;
-			
-		case "member_list" :
-			request.setAttribute("list", service.getMemberList());
-			command = CommandFactory.createCommand(str[0], str[1]);
-			break;
-			
-		case "grade_list" :
-			request.setAttribute("list", service.getGradeList());
+//			request.setAttribute("list", service.getMemberList());
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 

@@ -16,7 +16,7 @@ import com.movie.web.global.Seperator;
 import com.movie.web.member.MemberService;
 import com.movie.web.member.MemberServiceImpl;
 
-@WebServlet({"/grade/my_grade.do"})
+@WebServlet({"/grade/my_grade.do", "/grade/grade_list.do"})
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	GradeService service = GradeServiceImpl.getInstance();
@@ -30,6 +30,11 @@ public class GradeController extends HttpServlet {
 		case "my_grade":
 			command = CommandFactory.createCommand(str[0], "my_grade");
 			request.setAttribute("score", service.getGradeById(request.getParameter("id")));
+			break;
+			
+		case "grade_list" :
+			request.setAttribute("list", service.getList());
+			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 		
 		default:

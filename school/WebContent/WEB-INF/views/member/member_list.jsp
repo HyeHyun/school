@@ -24,7 +24,7 @@
 				</tr>
 			</c:forEach>
 		</table> --%>
-		<table border="1" style="width: 90%; text-align: center">
+		<table id="member_list">
 			<tr>
 				<th>아이디</th>
 				<th>이름</th>
@@ -44,3 +44,10 @@
 		</table>
 	</center>
 </div>
+<script>
+	$(function() {
+		$('#member_list tr').css('border', '1px solid black');
+		$('#member_list tr th').css('border', '1px solid black').css('text-align', 'center');
+		$('#member_list tr td').css('border', '1px solid black').css('text-align', 'center');
+	});
+</script>

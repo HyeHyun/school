@@ -52,7 +52,7 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public List<GradeMemberBean> selectAll() {
+	public List<GradeMemberBean> selectList() {
 		List<GradeMemberBean> list = new Vector<GradeMemberBean>();
 		
 		try {

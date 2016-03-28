@@ -1,5 +1,7 @@
 package com.movie.web.member;
 
+import java.util.List;
+
 public interface MemberService {
 	// 인터페이스는 추상메소드만 와야 한다는 문법이 있어서
 	// abstract가 생략 가능하다
@@ -10,4 +12,5 @@ public interface MemberService {
 	public int update(MemberBean member);
 	public int remove(String id);
 	public boolean login(String id, String password);
+	public List<MemberBean> getList();
 }

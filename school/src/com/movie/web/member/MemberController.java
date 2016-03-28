@@ -15,7 +15,7 @@ import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Seperator;
 
 @WebServlet({"/member/login_form.do", "/member/join_form.do", "/member/join.do", "/member/login.do", 
-			"/member/detail.do", "/member/update_form.do", "/member/update.do", "/member/delete.do"})
+			"/member/detail.do", "/member/update_form.do", "/member/update.do", "/member/delete.do", "/member/member_list.do"})
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -85,6 +85,11 @@ public class MemberController extends HttpServlet {
 			} else {
 				command = CommandFactory.createCommand(str[0], "update_form");
 			}
+			break;
+			
+		case "member_list" :
+			request.setAttribute("list", service.getList());
+			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 		
 		default:

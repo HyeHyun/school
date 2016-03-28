@@ -37,7 +37,7 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">검색</button>
       </form>
@@ -48,3 +48,10 @@
   </div><!-- /.container-fluid -->
 </nav>
 </header>
+<script>
+	$(function() {
+		$('#searchBtn').click(function() {
+			$('form').attr('action', '${context}/member/search.do');
+		})
+	})
+</script>

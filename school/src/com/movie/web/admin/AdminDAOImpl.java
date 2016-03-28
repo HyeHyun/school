@@ -30,33 +30,6 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<MemberBean> selectMember() {
-		List<MemberBean> list = new Vector<MemberBean>();
-		
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM Member");
-
-			while (rs.next()) {
-				MemberBean member = new MemberBean();
-				
-				member.setId(rs.getString("id"));
-				member.setPassword(rs.getString("password"));
-				member.setName(rs.getString("name"));
-				member.setAddr(rs.getString("addr"));
-				member.setBirth(rs.getInt("birth"));
-				
-				list.add(member);
-			}
-		} catch (Exception e) {
-			System.out.println("selectMember() 에러 발생!!");
-			e.printStackTrace();
-		}
-
-		return list;
-	}
-	
-	@Override
 	public List<GradeMemberBean> selectGrade() {
 		List<GradeMemberBean> list = new Vector<GradeMemberBean>();
 		

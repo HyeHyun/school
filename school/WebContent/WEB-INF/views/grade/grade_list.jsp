@@ -1,11 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="ko">
-<head>
-	<meta charset="UTF-8" />
-	<title>Document</title>
-</head>
-<body>
-
-</body>
-</html>
+<div id="detail">
+	<div class="joinTop">
+		<h2 class="text-center">성적 목록</h2>
+	</div> 
+	<center>
+		<table id="grade_list">
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>자바</th>
+				<th>SQL</th>
+				<th>JSP</th>
+				<th>스프링</th>
+			</tr>
+			<c:forEach var="list" items="${list}">
+				<tr>
+					<td>${list.id}</td>
+					<td>${list.name}</td>
+					<td>${list.java}</td>
+					<td>${list.sql}</td>
+					<td>${list.jsp}</td>
+					<td>${list.spring}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</center>
+</div>
+<script>
+	$(function() {
+		$('#grade_list').css('width', '90%');
+		$('#grade_list tr').css('border', '1px solid black');
+		$('#grade_list tr th').css('border', '1px solid black').css('text-align', 'center');
+		$('#grade_list tr td').css('border', '1px solid black').css('text-align', 'center');
+	});
+</script>

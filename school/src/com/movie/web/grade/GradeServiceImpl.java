@@ -26,7 +26,7 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<GradeMemberBean> getList() {
 		// 성적표 리스트 출력
-		return dao.selectAll();
+		return dao.selectList();
 	}
 
 	@Override

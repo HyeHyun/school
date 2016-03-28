@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Vector;
 
 import com.movie.web.global.Constants;
 import com.movie.web.global.DatabaseFactory;
@@ -118,5 +120,32 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 
 		return result;
-	}	
+	}
+	
+	@Override
+	public List<MemberBean> selectList() {
+		List<MemberBean> list = new Vector<MemberBean>();
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM Member");
+
+			while (rs.next()) {
+				MemberBean member = new MemberBean();
+				
+				member.setId(rs.getString("id"));
+				member.setPassword(rs.getString("password"));
+				member.setName(rs.getString("name"));
+				member.setAddr(rs.getString("addr"));
+				member.setBirth(rs.getInt("birth"));
+				
+				list.add(member);
+			}
+		} catch (Exception e) {
+			System.out.println("selectList() 에러 발생!!");
+			e.printStackTrace();
+		}
+
+		return list;
+	}
 }
