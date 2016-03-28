@@ -28,4 +28,9 @@ public class AdminServiceImpl implements AdminService {
 		return 0;
 	}
 
+	@Override
+	public AdminBean getAdmin(AdminBean admin) {
+		return dao.selectAdmin(admin);
+	}
+
 }

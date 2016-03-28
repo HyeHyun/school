@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.movie.web.global.Command;
 import com.movie.web.global.CommandFactory;
@@ -24,25 +25,30 @@ public class MemberController extends HttpServlet {
 		Command command = new Command();
 		String[] str = Seperator.seperator(request);
 		MemberBean member = new MemberBean();
+		HttpSession session = request.getSession(); // 쉘로우 카피
 		System.out.println("서비스 확인");
 		switch (str[1]) {
-		
 		case "login":
 			if (service.login(request.getParameter("id"), request.getParameter("password"))) {
-				request.setAttribute("member", service.detail(request.getParameter("id")));
+				session.setAttribute("user", service.detail(request.getParameter("id"))); // session 영역 (BOM)				
 				command = CommandFactory.createCommand(str[0], "detail");
 			} else {
 				command = CommandFactory.createCommand(str[0], "login_form");
 			}
 			break;
 			
+		case "logout":
+			session.invalidate();
+			command = CommandFactory.createCommand(str[0], "login_form");
+			break;
+			
 		case "detail":
-			request.setAttribute("member", service.detail(request.getParameter("id")));
+//			request.setAttribute("member", service.detail(request.getParameter("id")));
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 			
 		case "update_form":
-			request.setAttribute("member", service.detail(request.getParameter("id")));
+//			request.setAttribute("member", service.detail(request.getParameter("id")));
 			command = CommandFactory.createCommand(str[0], "update_form");
 			break;
 			
@@ -66,7 +72,6 @@ public class MemberController extends HttpServlet {
 			} else {
 				command = CommandFactory.createCommand(str[0], "join_form");
 			}
-			
 			break;
 			
 		case "update":
@@ -75,12 +80,11 @@ public class MemberController extends HttpServlet {
 			member.setAddr(request.getParameter("addr"));
 			
 			if (service.update(member) == 1) {
-				request.setAttribute("member", service.detail(request.getParameter("id")));
+				session.setAttribute("user", service.detail(request.getParameter("id")));
 				command = CommandFactory.createCommand(str[0], "detail");
 			} else {
 				command = CommandFactory.createCommand(str[0], "update_form");
 			}
-			
 			break;
 		
 		default:

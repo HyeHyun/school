@@ -9,4 +9,5 @@ public interface AdminService {
 	public List<MemberBean>getMemberList();
 	public List<GradeMemberBean>getGradeList();
 	public int addScore(GradeMemberBean bean);
+	public AdminBean getAdmin(AdminBean admin);
 }
