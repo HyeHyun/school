@@ -18,7 +18,7 @@ public class GradeServiceImpl implements GradeService {
 
 	// 멤버 메소드 에어리어
 	@Override
-	public String input(GradeBean grade) {
+	public int input(GradeBean grade) {
 		// 성적표 등록
 		return dao.insert(grade);
 	}
@@ -27,12 +27,6 @@ public class GradeServiceImpl implements GradeService {
 	public List<GradeMemberBean> getList() {
 		// 성적표 리스트 출력
 		return dao.selectList();
-	}
-
-	@Override
-	public GradeMemberBean getGradeByHak(int hak) {
-		// 성적표 조회(학번)		
-		return dao.selectGradeByHak(hak);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import com.movie.web.global.CommandFactory;
 import com.movie.web.global.DispatcherServlet;
 import com.movie.web.global.Seperator;
 
-@WebServlet({"/admin/login_form.do", "/admin/login.do", "/admin/admin_form.do"})
+@WebServlet({"/admin/login_form.do", "/admin/login.do", "/admin/admin_form.do", "/admin/logout.do"})
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -40,9 +40,9 @@ public class AdminController extends HttpServlet {
 			}			
 			break;
 			
-		case "admin_form" : 
-//			request.setAttribute("list", service.getMemberList());
-			command = CommandFactory.createCommand(str[0], str[1]);
+		case "logout":
+			session.invalidate();
+			command = CommandFactory.createCommand(str[0], "login_form");
 			break;
 
 		default:

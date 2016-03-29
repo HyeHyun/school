@@ -3,8 +3,7 @@
 	<div class="joinTop">
 		<h2 class="text-center">성적 목록</h2>
 	</div> 
-	<center>
-		<table id="grade_list">
+		<table id="grade_list" style="width: 90%">
 			<tr>
 				<th>아이디</th>
 				<th>이름</th>
@@ -24,13 +23,11 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</center>
 </div>
 <script>
 	$(function() {
-		$('#grade_list').css('width', '90%');
 		$('#grade_list tr').css('border', '1px solid black');
-		$('#grade_list tr th').css('border', '1px solid black').css('text-align', 'center');
+		$('#grade_list tr th').css('border', '1px solid black').css('text-align', 'center').css('background-color', 'yellow');
 		$('#grade_list tr td').css('border', '1px solid black').css('text-align', 'center');
 	});
 </script>

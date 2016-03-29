@@ -4,11 +4,9 @@ import java.util.*;
 
 public interface GradeDAO {
 	// C 성적표 등록
-	public String insert(GradeBean grade);
+	public int insert(GradeBean grade);
 	// R 성적표 리스트 출력
 	public List<GradeMemberBean> selectList();
-	// R 성적표 조회(학번)
-	public GradeMemberBean selectGradeByHak(int hak);
 	// R 성적표 조회(이름)
 	public List<GradeMemberBean> selectGradesByName(String name);
 	// R 성적표 조회(아이디)

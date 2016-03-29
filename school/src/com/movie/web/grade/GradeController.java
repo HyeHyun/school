@@ -2,7 +2,6 @@ package com.movie.web.grade;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,15 +15,17 @@ import com.movie.web.global.Seperator;
 import com.movie.web.member.MemberService;
 import com.movie.web.member.MemberServiceImpl;
 
-@WebServlet({"/grade/my_grade.do", "/grade/grade_list.do"})
+@WebServlet({"/grade/my_grade.do", "/grade/grade_list.do", "/grade/add_form.do", "/grade/grade_add.do"})
 public class GradeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	GradeService service = GradeServiceImpl.getInstance();
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		GradeService service = GradeServiceImpl.getInstance();
+		MemberService memberService = MemberServiceImpl.getInstance();
 		Command command = new Command();
 		String[] str = Seperator.seperator(request);
+		GradeBean grade = new GradeBean();
 		
 		switch (str[1]) {
 		case "my_grade":
@@ -37,6 +38,25 @@ public class GradeController extends HttpServlet {
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;
 		
+		case "add_form" :
+			request.setAttribute("member", memberService.detail(request.getParameter("id")));
+			command = CommandFactory.createCommand(str[0], str[1]);
+			break;
+			
+		case "grade_add" :
+			grade.setId(request.getParameter("id"));
+			grade.setJava(Integer.parseInt(request.getParameter("java")));
+			grade.setJsp(Integer.parseInt(request.getParameter("jsp")));
+			grade.setSql(Integer.parseInt(request.getParameter("sql")));
+			grade.setSpring(Integer.parseInt(request.getParameter("spring")));
+
+			if (service.input(grade) == 1) {
+				command = CommandFactory.createCommand("admin", "admin_form");
+			} else {
+				command = CommandFactory.createCommand(str[0], "add_form");
+			}
+			break;
+			
 		default:
 			command = CommandFactory.createCommand(str[0], str[1]);
 			break;

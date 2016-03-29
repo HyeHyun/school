@@ -31,7 +31,6 @@ public class GradeMain {
 				break;
 			case 6:
 				System.out.print("학번을 입력하세요 ");
-				System.out.println(service.getGradeByHak(scanner.nextInt()));
 				break;
 			case 7:
 				System.out.println(service.getCount());

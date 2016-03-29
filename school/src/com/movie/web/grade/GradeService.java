@@ -12,11 +12,9 @@ import java.util.*;
  * */
 public interface GradeService {
 	// C 성적표 등록
-	public String input(GradeBean grade);
+	public int input(GradeBean grade);
 	// R 성적표 리스트 출력
 	public List<GradeMemberBean> getList();
-	// R 성적표 조회(학번)
-	public GradeMemberBean getGradeByHak(int hak);
 	// R 성적표 조회(이름)
 	public List<GradeMemberBean> getGradesByName(String name);
 	// R 성적표 조회(아이디)

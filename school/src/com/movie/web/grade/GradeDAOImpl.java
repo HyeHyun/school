@@ -9,9 +9,6 @@ import java.util.*;
 import com.movie.web.global.Constants;
 import com.movie.web.global.DatabaseFactory;
 import com.movie.web.global.Vendor;
-import com.movie.web.member.MemberDAO;
-import com.movie.web.member.MemberService;
-import com.movie.web.member.MemberServiceImpl;
 
 public class GradeDAOImpl implements GradeDAO {
 	
@@ -30,19 +27,17 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 	
 	@Override
-	public String insert(GradeBean grade) {
-		String result = "등록실패";
+	public int insert(GradeBean grade) {
+		int result = 0;
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO Grade(hak, id, java, sql, jsp, spring) VALUES (hak_seq.NEXTVAL, ?, ?, ?, ?, ?);");
+			pstmt = conn.prepareStatement("INSERT INTO Grade(score_seq, id, java, sql, jsp, spring) VALUES (score_seq.NEXTVAL, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, grade.getId());
 			pstmt.setInt(2, grade.getJava());
 			pstmt.setInt(3, grade.getSql());
 			pstmt.setInt(4, grade.getJsp());
 			pstmt.setInt(5, grade.getSpring());
-			pstmt.executeUpdate();
-			
-			result = "등록성공";
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insert() 에러 발생!!");
 			e.printStackTrace();
@@ -81,34 +76,6 @@ public class GradeDAOImpl implements GradeDAO {
 		}
 
 		return list;
-	}
-
-	@Override
-	public GradeMemberBean selectGradeByHak(int hak) {
-		GradeMemberBean bean = new GradeMemberBean();
-		
-		try {
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE hak ='" + hak +"'");
-			
-			while (rs.next()) {
-				bean.setId(rs.getString("id"));
-				bean.setScoreSeq(rs.getInt("score_seq"));
-				bean.setName(rs.getString("name"));
-				bean.setPassword(rs.getString("password"));
-				bean.setAddr(rs.getString("addr"));
-				bean.setBirth(rs.getInt("birth"));
-				bean.setJava(rs.getInt("java"));
-				bean.setJsp(rs.getInt("jsp"));
-				bean.setSql(rs.getInt("sql"));
-				bean.setSpring(rs.getInt("spring"));
-			}
-		} catch (Exception e) {
-			System.out.println("selectGradeByHak() 에러 발생!!");
-			e.printStackTrace();
-		}
-
-		return bean;
 	}
 
 	@Override
