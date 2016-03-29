@@ -7,8 +7,8 @@
 		<tr>
 			<th>아이디</th>
 			<th>이름</th>
-<!-- 			<th>전공</th>
-				<th>수강과목</th> -->
+			<th>전공</th>
+			<th>수강과목</th>
 			<th>주소</th>
 			<th>생년월일</th>
 		</tr>
@@ -16,8 +16,8 @@
 			<tr>
 				<td>${member.id}</td>
 				<td><a href="${context}/grade/add_form.do?id=${member.id}">${member.name}</a></td>
-<%-- 				<td>${member.major}</td>
-					<td>${member.subjects}</td> --%>
+				<td>${member.major}</td>
+				<td>${member.subject}</td>
 				<td>${member.addr}</td>
 				<td>${member.birth}</td>
 			</tr>

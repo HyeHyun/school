@@ -1,6 +1,8 @@
 package com.movie.web.member;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,7 +55,9 @@ public class MemberController extends HttpServlet {
 			break;
 			
 		case "delete":
-			if (service.remove(request.getParameter("id")) == 1) {
+			member = (MemberBean) session.getAttribute("user");
+			if (service.remove(member.getId()) == 1) {
+				session.invalidate();
 				command = CommandFactory.createCommand(str[0], "login_form");
 			} else {
 				command = CommandFactory.createCommand(str[0], "detail");
@@ -61,11 +65,21 @@ public class MemberController extends HttpServlet {
 			break;
 			
 		case "join":
+/*			Map<String, String[]> map = new HashMap<String, String[]>();
+			map = request.getParameterMap();*/
+			String[] arr = request.getParameterValues("subject");
+			StringBuffer buff = new StringBuffer();
+			for (int i = 0; i < arr.length; i++) {
+				buff.append(arr[i] + "/");
+			}
+			
 			member.setId(request.getParameter("id"));
 			member.setPassword(request.getParameter("password"));
 			member.setName(request.getParameter("name"));
 			member.setAddr(request.getParameter("addr"));
 			member.setBirth(Integer.parseInt(request.getParameter("birth")));
+			member.setSubject(buff.toString());
+			member.setMajor(request.getParameter("major"));
 
 			if (service.join(member) == 1) {
 				command = CommandFactory.createCommand(str[0], "login_form");

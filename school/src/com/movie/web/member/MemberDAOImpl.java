@@ -32,12 +32,14 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = 0;
 		
 		try {
-			pstmt = conn.prepareStatement("INSERT INTO Member(id, password, name, addr, birth) VALUES (?, ?, ?, ?, ?)");
+			pstmt = conn.prepareStatement("INSERT INTO Member(id, password, name, addr, birth, major, subject) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getName());
 			pstmt.setString(4, member.getAddr());
 			pstmt.setInt(5, member.getBirth());
+			pstmt.setString(6, member.getMajor());
+			pstmt.setString(7, member.getSubject());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insert() 에러 발생!!");
@@ -60,9 +62,11 @@ public class MemberDAOImpl implements MemberDAO {
 				temp.setPassword(rs.getString("password"));
 				temp.setAddr(rs.getString("addr"));
 				temp.setBirth(rs.getInt("birth"));
+				temp.setMajor(rs.getString("major"));
+				temp.setSubject(rs.getString("subject"));
 			}
 		} catch (Exception e) {
-			System.out.println("selectMember() 에러 발생!!");
+			System.out.println("selectById() 에러 발생!!");
 			e.printStackTrace();
 		}
 
@@ -138,6 +142,8 @@ public class MemberDAOImpl implements MemberDAO {
 				member.setName(rs.getString("name"));
 				member.setAddr(rs.getString("addr"));
 				member.setBirth(rs.getInt("birth"));
+				member.setSubject(rs.getString("subject"));
+				member.setMajor(rs.getString("major"));
 				
 				list.add(member);
 			}

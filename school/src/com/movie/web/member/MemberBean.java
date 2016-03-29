@@ -1,7 +1,7 @@
 package com.movie.web.member;
 
 public class MemberBean {
-	private String id, password, name, addr;
+	private String id, password, name, addr, subject, major;
 	private int birth; // 생년월일은 800101 처럼 숫자만 입력
 	
 	public MemberBean() {}
@@ -12,6 +12,22 @@ public class MemberBean {
 		this.name = name;
 		this.addr = addr;
 		this.birth = birth;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public void setMajor(String major) {
+		this.major = major;
 	}
 
 	public String getId() {
@@ -56,6 +72,7 @@ public class MemberBean {
 
 	@Override
 	public String toString() {
-		return "회원정보 [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 생년월일=" + birth + "]";
+		return "MemberBean [아이디=" + id + ", 비밀번호=" + password + ", 이름=" + name + ", 주소=" + addr + ", 과목="
+				+ subject + ", 전공=" + major + ", 생일=" + birth + "]";
 	}
 }
